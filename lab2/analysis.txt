@@ -1,0 +1,42 @@
+1) Encryption and Decryption Times:
+
+X-axis: Input size in bytes.
+Y-axis: Time (in seconds).
+The encryption time is represented by a line that increases more gradually than the decryption time.
+The decryption time shows a steeper increase as input size grows.
+Explanation:
+
+Encryption typically takes less time than decryption in RSA because of the smaller exponent used in the public key during encryption compared to the private key's larger exponent used during decryption.
+
+2) Memory Usage:
+
+X-axis: Input size in bytes.
+Y-axis: Memory usage (in MB).
+The plot shows a nearly constant memory usage across all input sizes.
+Explanation for constant memory usage:
+
+RSA encryption and decryption involve modular exponentiation operations, which do not require a large increase in memory as input size grows. Instead, the operations are computationally intensive but use a fixed amount of memory for processing key and chunk sizes.
+
+3) CPU Utilization:
+
+X-axis: Input size in bytes.
+Y-axis: CPU utilization (in percentage).
+The CPU utilization shows a decreasing trend as the input size increases.
+Explanation for decreasing CPU utilization:
+
+The observed decrease might be due to factors like:
+Efficient use of CPU caching and batching for larger inputs.
+A fixed overhead for smaller inputs (e.g., key loading, initial setup), which inflates the relative CPU usage for smaller input sizes.
+Background processes or CPU scheduling that affect measurement consistency.
+
+
+Optimization
+
+1) For Memory Usage:
+Memory optimization is not a significant concern for this implementation, as usage remains constant and within acceptable limits.
+
+2) For CPU Utilization:
+If the CPU utilization trend is inconsistent or unexpected, additional profiling (e.g., thread-level CPU monitoring) could clarify the issue.
+
+3) For Encryption and Decryption Times:
+To optimize performance, consider hybrid encryption (e.g., combining RSA with symmetric encryption algorithms like AES), where RSA is used only for encrypting the symmetric key, which is faster for bulk data encryption.
